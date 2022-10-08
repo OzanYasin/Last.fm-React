@@ -18,17 +18,16 @@ const AppProvider = ({ children }) => {
     try {
       const response = await fetch(`${URL_TOP_ARTIST}${method}`);
       const data = await response.json();
-      // console.log(data);
       const { artists } = data;
       if (artists) {
         const artistList = artists.artist;
         const newArtist = artistList.map((artist) => {
-          const { name, playcount, listeners } = artist;
-          return { name, playCount: playcount, listeners };
+          const { name, playcount, listeners, image } = artist;
+          return { name, playCount: playcount, listeners, image };
         });
         setArtists(newArtist);
       } else {
-        // Happens if artists array is null
+        // if artists array is null
         setArtists([]);
       }
       setLoading(false);
