@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import { useGlobalContext } from '../context';
 
 const ArtistList = () => {
-  const { artists, loading, fetchTopArtists } = useGlobalContext();
+  const { artists, loading, fetchTopArtists, page, infiniteScroll } =
+    useGlobalContext();
+
   // Sorun
   // fetchTopArtists dependency olarak belirlenirse infitine loop meydana gelir. Cunku fetchleme islemini her bir bilgi icin yapicak ve ayni zamanda "artists" state'ini tekrar tekrar guncelleyecek.
 
@@ -16,7 +18,12 @@ const ArtistList = () => {
 
   useEffect(() => {
     fetchTopArtists();
-  }, [fetchTopArtists]);
+  }, [fetchTopArtists, page]);
+
+  // Infinite Scroll
+  useEffect(() => {
+    infiniteScroll();
+  }, [infiniteScroll]);
 
   if (loading) {
     return <Loading />;
