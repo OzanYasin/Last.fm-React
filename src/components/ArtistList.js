@@ -1,10 +1,15 @@
 import React from 'react';
 import Artist from './Artist';
 import Loading from './Loading';
+import { useEffect } from 'react';
 import { useGlobalContext } from '../context';
 
 const ArtistList = () => {
-  const { artists, loading } = useGlobalContext();
+  const { artists, loading, fetchTopArtists } = useGlobalContext();
+
+  useEffect(() => {
+    fetchTopArtists();
+  }, []);
 
   if (loading) {
     return <Loading />;

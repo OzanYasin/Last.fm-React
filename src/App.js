@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/artist/:name">
+        <Route path="/artist/:id">
           <SingleArtist />
         </Route>
         <Route path="*">
