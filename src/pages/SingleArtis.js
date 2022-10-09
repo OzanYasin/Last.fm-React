@@ -58,7 +58,6 @@ const SingleArtist = () => {
             const { name, playcount: playCount, listeners, image } = item;
             return { name, playCount, listeners, image };
           });
-          console.log(newTrack);
           setTracks(newTrack);
         } else {
           setAlbums(null);
