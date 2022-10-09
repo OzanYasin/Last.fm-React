@@ -222,6 +222,7 @@ Top Artist List
   column-gap: 2rem;
   /* align-items: start; */
 }
+
 @media screen and (min-width: 576px) {
   .artists-center {
     grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));
@@ -269,7 +270,7 @@ Artist
 
 /* 
 ====== 
-Artist
+Album
 ======
 */
 

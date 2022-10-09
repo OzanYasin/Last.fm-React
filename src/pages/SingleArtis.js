@@ -5,9 +5,9 @@ import { useParams, Link } from 'react-router-dom';
 import DetailCard from '../components/DetailCard';
 import { useGlobalContext } from '../context';
 
-const TOP_ALBUM_URL = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&api_key=29a080980b034e8c18685f697014f77c&format=json&limit=3&artist=`;
+const TOP_ALBUM_URL = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&api_key=29a080980b034e8c18685f697014f77c&format=json&limit=5&artist=`;
 
-const TOP_TRACKS_URL = `https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&api_key=29a080980b034e8c18685f697014f77c&format=json&limit=3&artist=`;
+const TOP_TRACKS_URL = `https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&api_key=29a080980b034e8c18685f697014f77c&format=json&limit=5&artist=`;
 
 const SingleArtist = () => {
   const { id } = useParams();
@@ -55,9 +55,10 @@ const SingleArtist = () => {
         if (data) {
           const tracksList = data.toptracks.track;
           const newTrack = tracksList.map((item) => {
-            const { name, playcount: playCount, listener, image } = item;
-            return { name, playCount, listener, image };
+            const { name, playcount: playCount, listeners, image } = item;
+            return { name, playCount, listeners, image };
           });
+          console.log(newTrack);
           setTracks(newTrack);
         } else {
           setAlbums(null);
@@ -76,22 +77,28 @@ const SingleArtist = () => {
   }
 
   return (
-    <section className="section">
-      <h2 className="section-title">top albums</h2>
-      <div className="artists-center">
-        {albums.map((album, i) => {
-          return <DetailCard key={i} {...album} />;
-        })}
-      </div>
-      <div className="artists-center">
-        {tracks.map((track, i) => {
-          return <DetailCard key={i} {...track} />;
-        })}
-      </div>
-      <Link to="/" className="btn btn-primary">
-        top artists
-      </Link>
-    </section>
+    <>
+      <section className="section">
+        <h2 className="section-title">top albums</h2>
+        <div className="artists-center">
+          {albums.map((album, i) => {
+            return <DetailCard key={i} {...album} />;
+          })}
+        </div>
+      </section>
+      <br />
+      <section className="section">
+        <h2 className="section-title">top tracks</h2>
+        <div className="artists-center">
+          {tracks.map((track, i) => {
+            return <DetailCard key={i} {...track} />;
+          })}
+        </div>
+        <Link to="/" className="btn btn-primary">
+          home
+        </Link>
+      </section>
+    </>
   );
 };
 

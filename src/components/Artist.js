@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Artist = ({ name, playCount, listeners, image }) => {
-  let artistImage = image[3]['#text'];
+  const artistImage = image[3]['#text'];
 
   return (
     <article className="artist">
