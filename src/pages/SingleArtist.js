@@ -73,28 +73,28 @@ const SingleArtist = () => {
   }
 
   return (
-    <>
-      <section className="section">
+    <div className="container">
+      <section className="topalbums">
         <h2 className="section-title">top albums</h2>
-        <div className="artists-center">
+        <div className="artists-card">
           {albums.map((album, i) => {
             return <DetailCard key={i} {...album} />;
           })}
         </div>
       </section>
       <br />
-      <section className="section">
+      <section className="toptracks">
         <h2 className="section-title">top tracks</h2>
-        <div className="artists-center">
+        <div className="artists-card">
           {tracks.map((track, i) => {
             return <DetailCard key={i} {...track} />;
           })}
         </div>
-        <Link to="/" className="btn btn-primary">
+        {/* <Link to="/" className="btn btn-primary">
           home
-        </Link>
+        </Link> */}
       </section>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 // import pages
 import Error from './pages/Error';
 import Home from './pages/Home';
-import SingleArtist from './pages/SingleArtis';
+import SingleArtist from './pages/SingleArtist';
 // import components
 
 function App() {
