@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Loading from '../components/Loading';
 import { useParams, Link } from 'react-router-dom';
 import DetailCard from '../components/DetailCard';
-import { useGlobalContext } from '../context';
 
 const TOP_ALBUM_URL = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&api_key=29a080980b034e8c18685f697014f77c&format=json&limit=5&artist=`;
 
@@ -14,8 +13,6 @@ const SingleArtist = () => {
   const [loading, setLoading] = useState(false);
   const [albums, setAlbums] = useState([]);
   const [tracks, setTracks] = useState([]);
-  // console.log(album);
-  const { fetchTopAlbums } = useGlobalContext();
 
   const URL_NAME = id.replace(' ', '');
 
@@ -43,7 +40,7 @@ const SingleArtist = () => {
       }
     }
     getAlbums();
-  }, []);
+  }, [URL_NAME]);
 
   useEffect(() => {
     async function getTracks() {
@@ -69,7 +66,7 @@ const SingleArtist = () => {
       }
     }
     getTracks();
-  }, []);
+  }, [URL_NAME]);
 
   if (loading) {
     return <Loading />;

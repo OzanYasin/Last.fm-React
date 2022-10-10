@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 import { useGlobalContext } from '../context';
 
 const ArtistList = () => {
-  const { artists, loading, fetchTopArtists, page, infiniteScroll } =
-    useGlobalContext();
+  const { artists, loading, fetchTopArtists, page } = useGlobalContext();
 
   // Sorun
   // fetchTopArtists dependency olarak belirlenirse infitine loop meydana gelir. Cunku fetchleme islemini her bir bilgi icin yapicak ve ayni zamanda "artists" state'ini tekrar tekrar guncelleyecek.
@@ -14,18 +13,13 @@ const ArtistList = () => {
   // Cozum
   // contex yapimizin icinde useCallback kullanabiliriz
   // Sadece bir sey degistiginde fetch methodunu gerceklestirmesini saglar.
-  // Bu sayede dependency arayine fetchTopArtists methodunu ekleyebiliriz.
+  // Bu sayede dependency aray'ine fetchTopArtists methodunu ekleyebiliriz.
 
   useEffect(() => {
     fetchTopArtists();
   }, [fetchTopArtists, page]);
 
-  // Infinite Scroll
-  useEffect(() => {
-    infiniteScroll();
-  }, [infiniteScroll]);
-
-  if (loading) {
+  if (loading && page === 1) {
     return <Loading />;
   }
 
