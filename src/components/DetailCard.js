@@ -1,5 +1,4 @@
 import React from 'react';
-import SingleArtist from '../pages/SingleArtist';
 
 const DetailCard = ({ name, playCount, image, listeners }) => {
   const artistImage = image[3]['#text'];
@@ -10,18 +9,18 @@ const DetailCard = ({ name, playCount, image, listeners }) => {
         <h2 className="card_title">{name}</h2>
         <div className="card_image">
           <img src={artistImage} alt={name} />
-          <div className="album-info">
+        </div>
+        <div className="album-info">
+          <p>
+            <div className="album-data">playcount</div>
+            {playCount}
+          </p>
+          {listeners ? (
             <p>
-              <span className="album-data">playcount:</span>
-              {playCount}
+              <div className="album-data">listeners</div>
+              {listeners}
             </p>
-            {listeners ? (
-              <p>
-                <span className="album-data">listeners:</span>
-                {listeners}
-              </p>
-            ) : null}
-          </div>
+          ) : null}
         </div>
       </div>
     </section>
