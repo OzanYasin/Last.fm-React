@@ -40,12 +40,38 @@ const AppProvider = ({ children }) => {
     }
   }, [URL_PAGE]);
 
-  // Infinite Scroll
+  // Dark Theme START
+  const getStorageTheme = () => {
+    let theme = 'light-theme';
+    if (localStorage.getItem('theme')) {
+      theme = localStorage.getItem('theme');
+    }
+    return theme;
+  };
+
+  const toggleTheme = () => {
+    if (theme === 'light-theme') {
+      setTheme('dark-theme');
+    } else {
+      setTheme('light-theme');
+    }
+  };
+  // Cannot access 'getStorageTheme' before initialization
+  const [theme, setTheme] = useState(getStorageTheme());
+
+  useEffect(() => {
+    document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+  // Dark Theme END
+
+  // Infinite Scroll START
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
       return;
     }
+    // we need to check for the loading and newArtists to fech for only once
     if (!newArtists) return;
     if (loading) return;
     setPage((oldPage) => oldPage + 1);
@@ -56,11 +82,11 @@ const AppProvider = ({ children }) => {
       setNewArtists(true);
     }
   };
-
   useEffect(() => {
     window.addEventListener('scroll', event);
     return () => window.removeEventListener('scroll', event);
   }, []);
+  // Infinite Scroll END
 
   return (
     <AppContext.Provider
@@ -69,6 +95,7 @@ const AppProvider = ({ children }) => {
         artists,
         fetchTopArtists,
         page,
+        toggleTheme,
       }}
     >
       {children}

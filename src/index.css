@@ -24,6 +24,25 @@ Variables
   --maxWidth: 40rem;
   --fullWidth: 1170px;
 }
+
+/* ======= */
+/* Dark Theme */
+/* ======= */
+
+.dark-theme {
+  --mainBackground: #222;
+  --mainBlack: #f1f5f8;
+  --mainWhite: rgb(49, 49, 49);
+  --primaryColor: #ff6b58;
+}
+
+.light-theme {
+  --mainBackground: #f1f5f8;
+  --mainBlack: #222;
+
+  --mainWhite: #fff;
+}
+
 /* 
 ====== 
 Global Styles 
@@ -243,7 +262,7 @@ Top Artist List
 }
 
 .card {
-  background-color: white;
+  background-color: var(--mainWhite);
   border-radius: 2rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   display: flex;
