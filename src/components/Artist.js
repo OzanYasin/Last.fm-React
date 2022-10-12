@@ -5,7 +5,7 @@ const Artist = ({ name, playCount, listeners, image }) => {
   const artistImage = image[3]['#text'];
 
   return (
-    <article className="artist">
+    <article className="artist" data-testid="artist">
       <div className="img-container">
         <img src={artistImage} alt={name} />
       </div>
