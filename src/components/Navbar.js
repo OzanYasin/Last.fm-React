@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
-import { useGlobalContext } from '../context';
+import ToggleTheme from './ToggleTheme';
 
 const Navbar = () => {
-  const { toggleTheme } = useGlobalContext();
+  // const { toggleTheme } = useGlobalContext();
+
   return (
     <nav className="navbar">
       <div className="nav-center">
@@ -13,9 +14,7 @@ const Navbar = () => {
         </Link>
         <ul className="nav-links">
           <li>
-            <button className="btn" onClick={toggleTheme}>
-              toggle
-            </button>
+            <ToggleTheme />
           </li>
         </ul>
       </div>
